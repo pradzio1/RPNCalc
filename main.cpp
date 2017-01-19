@@ -4,16 +4,19 @@
 #include "SubtractOperatorCommand.h"
 #include "AddOperatorCommand.h"
 #include "MultiplyOperatorCommand.h"
+#include "PushNumberCommand.h"
 
 Command *createCommand(char c) {
     if(c=='/'||c==':')
-        return new DivideOperatorCommand;
+        return new DivideOperatorCommand();
     else if(c=='-')
-        return new SubtractOperatorCommand;
+        return new SubtractOperatorCommand();
     else if(c=='+')
-        return new AddOperatorCommand;
+        return new AddOperatorCommand();
     else if(c=='*'||c=='x')
-        return new MultiplyOperatorCommand;
+        return new MultiplyOperatorCommand();
+    else if(std::isdigit(c))
+        return new PushNumberCommand(c-48);
     else
         return NULL;
 //    TODO Exception handling
