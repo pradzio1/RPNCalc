@@ -1,11 +1,18 @@
 #include <iostream>
+#include <cstdio>
 #include "Command.h"
 #include "DivideOperatorCommand.h"
 #include "SubtractOperatorCommand.h"
 #include "AddOperatorCommand.h"
 #include "MultiplyOperatorCommand.h"
 #include "PushNumberCommand.h"
-
+void showStack(std::stack <int> s){
+    while(s.empty()){
+        std::cout << "i'm here";
+        std::cout << "> " << s.top() << std::endl;
+        s.pop();
+    }
+}
 Command *createCommand(char c) {
     if(c=='/'||c==':')
         return new DivideOperatorCommand();
@@ -27,12 +34,14 @@ int main() {
     Command *command;
     while(true){
         std::cin>>choice;
+       // std::cout << choice;
         if (choice=='c')
             break;
         else {
             command = createCommand(choice);
             command->execute(operationStack);
         }
+        showStack(operationStack);
     }
 //    TODO Stack display
     return 0;
