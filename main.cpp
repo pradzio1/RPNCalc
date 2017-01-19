@@ -7,8 +7,7 @@
 #include "MultiplyOperatorCommand.h"
 #include "PushNumberCommand.h"
 void showStack(std::stack <int> s){
-    while(s.empty()){
-        std::cout << "i'm here";
+    while(!s.empty()){
         std::cout << "> " << s.top() << std::endl;
         s.pop();
     }
@@ -34,12 +33,13 @@ int main() {
     Command *command;
     while(true){
         std::cin>>choice;
-       // std::cout << choice;
         if (choice=='c')
             break;
         else {
             command = createCommand(choice);
+            if(command)
             command->execute(operationStack);
+            else break;
         }
         showStack(operationStack);
     }
