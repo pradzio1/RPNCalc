@@ -22,10 +22,14 @@ bool isValid(std::string &x) {
         return (x == "+" || x == "-" || x == "*" || x == "/" || x == "x" || x == ":" || isdigit(x[0]));
     else {
         for (int i = 0; i < inputSize; ++i) {
+            if (x[i] == '.')
+                dotcount++;
             if (x[i] == ',') {
                 x[i] = '.';
                 dotcount++;
             }
+            if (dotcount >= 1)
+                return false;
             if (x[i] != '.' && !isdigit(x[i]))
                 return false;
         }
@@ -63,9 +67,9 @@ int main() {
             try {
                 command = createCommand(input);
             }
-            catch(OperationException exc){
+            catch (OperationException exc) {
                 exc.what();
-                command=NULL;
+                command = NULL;
             }
             if (command)
                 try {
