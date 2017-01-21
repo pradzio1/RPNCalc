@@ -12,7 +12,7 @@ class OperationException : std::exception {
 private:
     std::string message;
 public:
-    enum ERR_TYPE {DIV_BY_ZERO, NOT_ENOUGH_ARGUMENTS};
+    enum ERR_TYPE {DIV_BY_ZERO, NOT_ENOUGH_ARGUMENTS, INVALID_ARGUMENT};
     OperationException(ERR_TYPE exceptionType);
     virtual void what();
 };

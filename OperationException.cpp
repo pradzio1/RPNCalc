@@ -13,9 +13,13 @@ OperationException::OperationException(ERR_TYPE exceptionType) {
             message="Division by zero is forbidden!";
             break;
         case NOT_ENOUGH_ARGUMENTS:
-            message="Not enough given arguments for this operation";
+            message="Not enough arguments for this operation, please enter a number";
+            break;
+        case INVALID_ARGUMENT:
+            message="Invalid argument, please enter valid number or operator";
             break;
         default:
             message="Unknown type exception";
+            break;
     }
 }

@@ -48,12 +48,11 @@ Command *createCommand(std::string c) {
     else if (isValid(c))
         return new PushNumberCommand(num);
     else
-        return NULL;
+        throw OperationException(OperationException::INVALID_ARGUMENT);
 }
 
 int main() {
     std::stack<double> operationStack;
-    //char choice;
     std::string input;
     Command *command;
     while (true) {
@@ -61,7 +60,13 @@ int main() {
         if (input == "c")
             break;
         else {
-            command = createCommand(input);
+            try {
+                command = createCommand(input);
+            }
+            catch(OperationException exc){
+                exc.what();
+                command=NULL;
+            }
             if (command)
                 try {
                     command->execute(operationStack);
@@ -69,7 +74,6 @@ int main() {
                 catch (OperationException exc) {
                     exc.what();
                 }
-            else break;
         }
         showStack(operationStack);
     }
