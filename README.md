@@ -2,3 +2,4 @@
 
 Class diagram:
 
+![example](https://raw.githubusercontent.com/pradzio1/RPNCalc/master/res/ClassDiagram.png)
