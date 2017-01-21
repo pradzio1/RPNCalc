@@ -67,7 +67,7 @@ bool isValid(std::string &x) {
                 x[i] = '.';
                 dotcount++;
             }
-            if (dotcount >= 1)
+            if (dotcount > 1)
                 return false;
             if (x[i] != '.' && !isdigit(x[i]))
                 return false;
