@@ -5,11 +5,12 @@
 #ifndef RPNCALC_DIVIDEOPERATORCOMMAND_H
 #define RPNCALC_DIVIDEOPERATORCOMMAND_H
 
+#include "OperationException.h"
 
 #include "Command.h"
 
 class DivideOperatorCommand: public Command  {
-    virtual void execute(std::stack <int> &);
+    virtual void execute(std::stack <double> &);
 };
 
 

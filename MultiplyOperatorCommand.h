@@ -8,7 +8,7 @@
 #include "Command.h"
 
 class MultiplyOperatorCommand: public Command {
-    virtual void execute(std::stack <int> &);
+    virtual void execute(std::stack <double> &);
 };
 
 

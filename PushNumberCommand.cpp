@@ -3,9 +3,9 @@
 //
 
 #include "PushNumberCommand.h"
-PushNumberCommand::PushNumberCommand(int x){
+PushNumberCommand::PushNumberCommand(double x){
         var=x;
 }
-void PushNumberCommand::execute(std::stack<int> &s) {
+void PushNumberCommand::execute(std::stack<double> &s) {
     s.push(var);
 }

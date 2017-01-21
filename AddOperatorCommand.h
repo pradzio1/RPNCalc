@@ -8,7 +8,7 @@
 #include "Command.h"
 
 class AddOperatorCommand: public Command {
-    virtual void execute(std::stack <int> &);
+    virtual void execute(std::stack <double> &);
 };
 
 

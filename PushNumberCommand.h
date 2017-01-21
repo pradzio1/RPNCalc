@@ -7,10 +7,10 @@
 
 #include "Command.h"
 class PushNumberCommand : public Command {
-    int var;
+    double var;
 public:
-    PushNumberCommand(int);
-    virtual void execute(std::stack <int> &);
+    PushNumberCommand(double);
+    virtual void execute(std::stack <double> &);
 };
 
 

@@ -1,48 +1,77 @@
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 #include "Command.h"
 #include "DivideOperatorCommand.h"
 #include "SubtractOperatorCommand.h"
 #include "AddOperatorCommand.h"
 #include "MultiplyOperatorCommand.h"
 #include "PushNumberCommand.h"
-void showStack(std::stack <int> s){
-    while(!s.empty()){
+
+void showStack(std::stack<double> s) {
+    while (!s.empty()) {
         std::cout << "> " << s.top() << std::endl;
         s.pop();
     }
 }
-Command *createCommand(char c) {
-    if(c=='/'||c==':')
+
+bool isValid(std::string &x) {
+    int inputSize = x.size();
+    int dotcount = 0;
+    if (inputSize == 1)
+        return (x == "+" || x == "-" || x == "*" || x == "/" || x == "x" || x == ":" || isdigit(x[0]));
+    else {
+        for (int i = 0; i < inputSize; ++i) {
+            if (x[i] == ',') {
+                x[i] = '.';
+                dotcount++;
+            }
+            if (x[i] != '.' && !isdigit(x[i]))
+                return false;
+        }
+        return dotcount <= 1;
+    }
+}
+
+Command *createCommand(std::string c) {
+    double num;
+    isValid(c);
+    num = atof(c.c_str());
+    if (c == "/" || c == ":")
         return new DivideOperatorCommand();
-    else if(c=='-')
+    else if (c == "-")
         return new SubtractOperatorCommand();
-    else if(c=='+')
+    else if (c == "+")
         return new AddOperatorCommand();
-    else if(c=='*'||c=='x')
+    else if (c == "*" || c == "x")
         return new MultiplyOperatorCommand();
-    else if(std::isdigit(c))
-        return new PushNumberCommand(c-48);
+    else if (isValid(c))
+        return new PushNumberCommand(num);
     else
         return NULL;
-//    TODO Exception handling
 }
+
 int main() {
-    std::stack <int> operationStack;
-    char choice;
+    std::stack<double> operationStack;
+    //char choice;
+    std::string input;
     Command *command;
-    while(true){
-        std::cin>>choice;
-        if (choice=='c')
+    while (true) {
+        std::cin >> input;
+        if (input == "c")
             break;
         else {
-            command = createCommand(choice);
-            if(command)
-            command->execute(operationStack);
+            command = createCommand(input);
+            if (command)
+                try {
+                    command->execute(operationStack);
+                }
+                catch (OperationException exc) {
+                    exc.what();
+                }
             else break;
         }
         showStack(operationStack);
     }
-//    TODO Stack display
     return 0;
 }

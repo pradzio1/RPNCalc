@@ -3,10 +3,17 @@
 //
 
 #include "SubtractOperatorCommand.h"
-void SubtractOperatorCommand::execute(std::stack<int> &s) {
-    int x1=s.top();
-    s.pop();
-    int x2=s.top();
-    s.pop();
-    s.push(x2-x1);
+#include "OperationException.h"
+
+void SubtractOperatorCommand::execute(std::stack<double> &s) {
+    if(s.size()>=2) {
+        double x1 = s.top();
+        s.pop();
+        double x2 = s.top();
+        s.pop();
+        s.push(x2 - x1);
+    }
+    else{
+        throw OperationException(OperationException::NOT_ENOUGH_ARGUMENTS);
+    }
 }

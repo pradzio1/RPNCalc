@@ -9,7 +9,7 @@
 #include "Command.h"
 
 class SubtractOperatorCommand: public Command  {
-    virtual void execute(std::stack <int> &);
+    virtual void execute(std::stack <double> &);
 };
 
 

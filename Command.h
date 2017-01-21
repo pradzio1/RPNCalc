@@ -8,7 +8,7 @@
 
 class Command {
 public:
-    virtual void execute(std::stack <int> &)=0;
+    virtual void execute(std::stack <double> &)=0;
 
 };
 
